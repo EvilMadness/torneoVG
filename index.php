@@ -1,44 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
 	<title>Torneo de Videojuegos: Smash</title>
-
 	<link rel="shortcut icon" href="images/gt_favicon.png">
-
 	<!-- Bootstrap itself -->
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="css/magister.css">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 	<!-- Fonts -->
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
 </head>
-
 <!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
-<body class="theme-invert">
-
-<nav class="mainmenu">
-	<div class="container">
-		<div class="dropdown">
-			<button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-			<!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-				<li><a href="#head" class="active">Iniciar Sesión</a></li>
-				<li><a href="pags/registro_concursante.php">Registrarse</a></li>
-				<li><a href="#about">Acerca de</a></li>
-				<li><a href="#contact"></a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+<body >
+<div>
+    <nav class="mainmenu">
+        <div class="container">
+            <div class="dropdown">
+                <button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a href="#head" class="active">Iniciar Sesión</a></li>
+                    <li><a href="pags/registro_concursante.php">Registrarse</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                    <li><a href="#contact"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 
 
 <!-- Main (Home) section -->
@@ -46,12 +37,10 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">	
-
+			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
 				<!-- Site Title, your name, HELLO msg, etc. -->
 				<h1 class="title">3er. Torneo de Videojuegos</h1>
 				<h2 class="subtitle">Feria Academica Cultural</h2>
-
 				<!-- Short introductory (optional) -->
 				<h3 class="tagline">
 					Potentially, the best place to tell people why they are here.<br>
