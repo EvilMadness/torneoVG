@@ -19,7 +19,18 @@ input[type=text], select {
 }
 
 input[type=submit] {
-    width: 100%;
+
+    width: 50%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type=reset]{
+    width: 50%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -56,6 +67,20 @@ input[type=password], select {
 .div {
     border-radius: 5px;
     padding: 50px;
+
+}
+input[type=text]{
+    color: #000;
+}
+input[type=password]{
+    color: #000;
+}
+input[type=email]{
+    color: #000;
+}
+.slcb{
+    color: #000;
+
 }
 fieldset{
     width: 80%;
