@@ -1,168 +1,151 @@
 <!DOCTYPE html>
-<html lang="es">
+<!--
+Template Name: Escarine-Biz
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>Torneo de Videojuegos: Smash</title>
-	<link rel="shortcut icon" href="images/gt_favicon.png">
-	<!-- Bootstrap itself -->
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<!-- Custom styles -->
-	<link rel="stylesheet" href="css/magister.css">
-	<!-- Fonts -->
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+  <title>Torneo de Videojuegos: Smash</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+  <link href="images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" />
 </head>
-<!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
-<body >
-<div>
-    <nav class="mainmenu">
-        <div class="container">
-            <div class="dropdown">
-                <button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li><a href="#head" class="active">Iniciar Sesión</a></li>
-                    <li><a href="pags/registro_concursante.php">Registrarse</a></li>
-                    <li><a href="#about">Acerca de</a></li>
-                    <li><a href="#contact"></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul class="nospace inline pushright">
+        <li><i class="fa fa-phone"></i> (386) 106 4302</li>
+        <li><i class="fa fa-envelope-o"></i> luisgarcia@alumnos.udg.mx</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="http://www.facebook.com/LuizGarcia.CA"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="https://twitter.com/RayoMonster"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
 </div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="index.php">Torneo de videojuegos</a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="index.php">Inicio</a></li>
+        <li><a class="drop" href="#">Registro</a>
+          <ul>
+            <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
+            <li><a href="pags/form_registro.php">Resgistrarse</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('images/Smash2.jpg')">
+  <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article class="introtxt">
+      <h3 class="heading underline center fondosombreado">3° Torneo de  Smash Bros</h3>
+      <h6 class="fondosombreado" ">
+        Feria Academica Cultural CUValles 2018
+      </h6>
+    </article>
+    <!-- ################################################################################################ -->
+    <ul class="nospace clear">
+      <li class="one_third first">
+        <article><i class="fa fa-3x fa-thumbs-o-up"></i>
+          <h4 class="heading underline"><a href="#">¡Me gusta!</a></h4>
+          <p>Da "Me gusta" y comparte con tus amigos y conocidos, ayuda a darnos a conocer.</p>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><i class="fa fa-3x fa-users"></i>
+          <h4 class="heading underline"><a href="#">Grupos y Familia</a></h4>
+          <p>Comenta, comparte con tus amigos, en redes sociales o cualquier grupo</p>
+        </article>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 
-
-<!-- Main (Home) section -->
-<section class="section" id="head">
-	<div class="container">
-
-		<div class="row">
-			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-				<!-- Site Title, your name, HELLO msg, etc. -->
-				<h1 class="title">3er. Torneo de Videojuegos</h1>
-				<h2 class="subtitle">Feria Academica Cultural</h2>
-				<!-- Short introductory (optional) -->
-				<h3 class="tagline">
-					Potentially, the best place to tell people why they are here.<br>
-					So, this is a demo page built to showcase the beauty of the template.
-				</h3>
-				
-				<!-- Nice place to describe your site in a sentence or two -->
-				<p><a href="/download/" class="btn btn-default btn-lg">¡Registrate ahora!</a></p>
-	
-			</div> <!-- /col -->
-		</div> <!-- /row -->
-	
-	</div>
-</section>
-
-<!-- Second (About) section -->
-<section class="section" id="about">
-	<div class="container">
-	
-		<h2 class="text-center title">Acerca de</h2>
-		<div class="row">
-			<div class="col-sm-4 col-sm-offset-2">    
-				<h5><strong>Where's my lorem ipsum?<br></strong></h5>
-				<p>Well, here it is: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, ullam, ducimus, eaque, ex autem est dolore illo similique quasi unde sint rerum magnam quod amet iste dolorem ad laudantium molestias enim quibusdam inventore totam fugit eum iusto ratione alias deleniti suscipit modi quis nostrum veniam fugiat debitis officiis impedit ipsum natus ipsa. Doloremque, id, at, corporis, libero laborum architecto mollitia molestiae maxime aut deserunt sed perspiciatis quibusdam praesentium consectetur in sint impedit voluptates! Deleniti, sequi voluptate recusandae facere nostrum?</p>    
-			</div>
-			<div class="col-sm-4">
-				<h5><strong>More, more lipsum!<br></strong></h5>    
-				<p>Tempore, eos, voluptatem minus commodi error aut eaque neque consequuntur optio nesciunt quod quibusdam. Ipsum, voluptatibus, totam, modi perspiciatis repudiandae odio ad possimus molestias culpa optio eaque itaque dicta quod cupiditate reiciendis illo illum aspernatur ducimus praesentium quae porro alias repellat quasi cum fugiat accusamus molestiae exercitationem amet fugit sint eligendi omnis adipisci corrupti. Aspernatur.</p>    
-				<h5><strong>Author links<br></strong></h5>    
-				<p><a href="http://be.net/pozhilov9409">Behance</a> / <a href="https://twitter.com/serggg">Twitter</a> / <a href="http://linkedin.com/pozhilov">LinkedIn</a> / <a href="https://www.facebook.com/pozhilov">Facebook</a></p>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Third (Works) section -->
-<section class="section" id="themes">
-	<form action="" method="post">
-		<label for="txtnombre">Nombre</label>
-		<input type="text">
-	</form>
-	<div class="container">
-
-		<h2 class="text-center title">Datos </h2>
-		<p class="lead text-center">
-			Huge thank you to all people who publish<br>
-			their photos at <a href="http://unsplash.com">Unsplash</a>, thank you guys!
-		</p>
-		<div class="row">
-			<div class="col-sm-4 col-sm-offset-2">
-				<label for="txtnombre">Nombre</label>
-				<input type="text" id="txtnombre">
-				<div class="thumbnail">
-					<img src="assets/screenshots/sshot1.jpg" alt="">
-					<div class="caption">
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="thumbnail">
-					<img src="assets/screenshots/sshot4.jpg" alt="">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque doloribus enim vitae nam cupiditate eius at explicabo eaque facere iste.</p>
-						<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-sm-offset-2">
-				<div class="thumbnail">
-					<img src="assets/screenshots/sshot5.jpg" alt="">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque doloribus enim vitae nam cupiditate eius at explicabo eaque facere iste.</p>
-						<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="thumbnail">
-					<img src="assets/screenshots/sshot3.jpg" alt="">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque doloribus enim vitae nam cupiditate eius at explicabo eaque facere iste.</p>
-						<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-	</div>
-</section>
-
-<!-- Fourth (Contact) section -->
-<section class="section" id="contact">
-	<div class="container">
-	
-		<h2 class="text-center title">Get in touch</h2>
-
-		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<p class="lead">Have a question about this template, or want to suggest a new feature?</p>
-				<p>Feel free to email me, or drop me a line in Twitter!</p>
-				<p><b>gt@gettemplate.com</b><br><br></p>
-				<ul class="list-inline list-social">
-					<li><a href="https://twitter.com/serggg" class="btn btn-link"><i class="fa fa-twitter fa-fw"></i> Twitter</a></li>
-					<li><a href="https://github.com/pozhilov" class="btn btn-link"><i class="fa fa-github fa-fw"></i> Github</a></li>
-					<li><a href="http://linkedin/in/pozhilov" class="btn btn-link"><i class="fa fa-linkedin fa-fw"></i> LinkedIn</a></li>
-				</ul>
-			</div>
-		</div>
-
-	</div>
-</section>
-
-
-<!-- Load js libs only when the page is loaded. -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="assets/js/modernizr.custom.72241.js"></script>
-<!-- Custom template scripts -->
-<script src="assets/js/magister.js"></script>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc topspace-0 clear">
+    <!-- ################################################################################################ -->
+    <br>
+    <!-- ################################################################################################ -->
+    <div class="group">
+      <div class="one_half first">
+        <h6 class="title">Contacto</h6>
+        <address class="btmspace-15">
+          Luis Ángel García Castro<br>
+          Carretera Guadalajara - Ameca Km 45.5<br>
+          Ameca, Jalisco, México<br>
+          C.P. 46600
+        </address>
+        <ul class="nospace">
+          <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
+          <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
+        </ul>
+      </div>
+      <div class="one_half">
+        <h6 class="title">Comunicate</h6>
+        <p>Guadalajara[Matriz] (33) 3105 7071</p>
+        <p>México D.F.  (55) 3105 7071</p>
+        <p>Arabia Saudita.  +966 (5) 105 7071</p>
+        <p>Ahualulco de Mdo.  (386) 105 7071</p>
+      </div>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="index.php">Luis A. García</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery-ui.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+<!-- IE9 Placeholder Support -->
+<script src="layout/scripts/jquery.placeholder.min.js"></script>
+<!-- / IE9 Placeholder Support -->
 </body>
 </html>
