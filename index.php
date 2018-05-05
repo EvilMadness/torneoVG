@@ -52,7 +52,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li class="active"><a href="index.php">Inicio</a></li>
         <li><a class="drop" href="#">Registro</a>
           <ul>
-            <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
+            <li><a href="pags/login.php">Iniciar Sesión</a></li>
             <li><a href="pags/form_registro.php">Resgistrarse</a></li>
           </ul>
         </li>
@@ -140,12 +140,5 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="layout/scripts/jquery.min.js"></script>
-<script src="layout/scripts/jquery-ui.min.js"></script>
-<script src="layout/scripts/jquery.backtotop.js"></script>
-<script src="layout/scripts/jquery.mobilemenu.js"></script>
-<!-- IE9 Placeholder Support -->
-<script src="layout/scripts/jquery.placeholder.min.js"></script>
-<!-- / IE9 Placeholder Support -->
 </body>
 </html>
