@@ -1,0 +1,35 @@
+#comments input[type="submit"]{
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.51);
+    color: #ffffff;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight:bold;
+    text-transform:uppercase;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+#comments input[type=submit]:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+#comments input[type="reset"]{
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.51);
+    color: #ffffff;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight:bold;
+    text-transform:uppercase;
+
+    padding-left: 100px;
+    padding-right: 100px;
+}
+#comments input[type=reset]:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}

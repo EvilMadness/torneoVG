@@ -1,25 +1,6 @@
 <?php
 require_once "conexion_bd.php";
 
-$idconcursante = $_GET["id"];
-$idconcursante = (int)$idconcursante;
-
-if ($idconcursante == ""){
-    echo '<script>alert("Concursante no encontrado")</script>';
-    header("Location:../index.php");
-    exit;
-} if (is_null($idconcursante)){
-    echo '<script>alert("Concursante no encontrado")</script>';
-    header("Location:../index.php");
-    exit;
-}
-$sqlConsulta = 'SELECT * FROM concursante WHERE idConcursante ='.$idconcursante;
-$res = $conn->query($sqlConsulta);
-$concursantes = $res->fetchAll();
-if (empty($concursantes)){
-    $res = "No se encontraron registros";
-}
-
 $sql1 = 'SELECT * FROM institucioneducativa';
 $result1 = $conn -> query($sql1);
 $instituciones = $result1 -> fetchAll();
@@ -31,7 +12,7 @@ $personajes = $result2 -> fetchAll();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Editar</title>
+    <title>Registro</title>
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <link href="../css/botones.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" >
@@ -123,9 +104,6 @@ $personajes = $result2 -> fetchAll();
         <!-- ################################################################################################ -->
     </header>
 </div>
-<?php
-foreach ($concursantes as $concur){
-?>
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments">
@@ -133,15 +111,15 @@ foreach ($concursantes as $concur){
                 <h2 class="healset">Información del concursante</h2>
                 <div class="one_third first">
                     <label for = "nombre"><b>Nombre(s)</b><span>*</span></label>
-                    <input type="text" name="nombre" id="nombre" size="100" placeholder="Nombre(s) del concursante" maxlength="30" value="<?php echo $concur["nombres"];?>"><br>
+                    <input type="text" name="nombre" id="nombre" size="100" placeholder="Nombre(s) del concursante" maxlength="30" ><br>
                 </div>
                 <div class="one_third">
                     <label for = "apaterno"><b>Apellido Paterno</b><span>*</span></label>
-                    <input type="text" name="apaterno" id="apaterno" size="200" placeholder="Apellido Paterno del concursante" maxlength="25" value="<?php echo $concur["apaterno"];?>"><br>
+                    <input type="text" name="apaterno" id="apaterno" size="200" placeholder="Apellido Paterno del concursante" maxlength="25" ><br>
                 </div>
                 <div class="one_third">
                     <label for = "amaterno"><b>Apellido Materno</b><span>*</span></label>
-                    <input type="text" name="amaterno" id="amaterno" size="200" placeholder="Apellido Materno del concursante" maxlength="25" value="<?php echo $concur["amaterno"];?>"><br>
+                    <input type="text" name="amaterno" id="amaterno" size="200" placeholder="Apellido Materno del concursante" maxlength="25" ><br>
                 </div>
                 <div class="one_third first">
                     <label for="combo_instituto"><b>Institución Educativa</b><span>*</span></label>
@@ -149,9 +127,7 @@ foreach ($concursantes as $concur){
                         <option value="00" >═══ Selecciona tu institución ═══</option>
                         <?php
                         foreach ($instituciones as $institucion){
-                            echo ('<option value="'.$institucion['id_institucion'].'"');
-                            if ($institucion['id_institucion']);
-                            echo ('>'.utf8_encode($institucion['nombre']).'</option>');
+                            echo '<option value="'.$institucion['id_institucion'].'">'.utf8_encode($institucion['nombre']).'</option>';
                         } ?>
                     </select>
                 </div>
@@ -174,7 +150,7 @@ foreach ($concursantes as $concur){
                 <h2 class="healset">Información de la cuenta</h2>
                 <div class="one_third first form-group">
                     <label for="nickname"><b>Nickname / Username</b><span>*</span></label>
-                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" value="<?php echo $concur["nickname"];?>">
+                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" >
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>
@@ -182,7 +158,7 @@ foreach ($concursantes as $concur){
                 </div>
                 <div class="one_third">
                     <label for="email"><b>Email</b><span>*</span></label>
-                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" value="<?php echo $concur["email"];?>">
+                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" >
                 </div>
                 <div>
                     <div class="one_half center first" >
@@ -196,7 +172,6 @@ foreach ($concursantes as $concur){
         </div>
     </main>
 </div>
-<?php } ?>
 
 <div class="wrapper row4">
     <footer id="footer" class="hoc topspace-0 clear">
