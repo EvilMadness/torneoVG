@@ -13,6 +13,8 @@ Licence URI: http://www.os-templates.com/template-terms
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -49,12 +51,12 @@ Licence URI: http://www.os-templates.com/template-terms
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li class="active"><a href="../index.php">Inicio</a></li>
-                <li><a class="drop" href="#">Registro</a>
+                <!--<li><a class="drop" href="#">Registro</a>
                     <ul>
                         <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
                         <li><a href="pags/form_registro.php">Resgistrarse</a></li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
         </nav>
         <!-- ################################################################################################ -->
@@ -64,7 +66,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments" align="center">
-            <form enctype="multipart/form-data" action="process/save_image.php" method="POST" style="width: 50%">
+            <form enctype="multipart/form-data" action="sesion.php" method="POST" style="width: 50%">
                 <h2 style="background-color: rgba(255,255,255,0.75)">Ingresa tus credenciales</h2>
                 <div>
                     <label for="nickname"></label>
@@ -74,7 +76,13 @@ Licence URI: http://www.os-templates.com/template-terms
                     <label for="password"></label>
                     <input name="password" id="password" type="password" placeholder="Contraseña" required>
                 </div>
-                <input type="submit" value="Iniciar Sesión"/>
+                <br>
+                <div>
+                    <input class="btnagregar" type="submit" value="Iniciar Sesión"/>
+                </div>
+                <div>
+                    <span class="fondoLink"><a class="fondoLink" href="form_registro.php">¿Aún no tienes una cuenta? ¡Registrate aquí!</span>
+                </div>
             </form>
         </div>
     </main>

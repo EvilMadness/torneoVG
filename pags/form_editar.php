@@ -24,6 +24,10 @@ $sql1 = 'SELECT * FROM institucioneducativa';
 $result1 = $conn -> query($sql1);
 $instituciones = $result1 -> fetchAll();
 
+$sql3 = 'SELECT * FROM carrera';
+$result3 = $conn -> query($sql3);
+$carreras = $result3 ->fetchAll();
+
 $sql2 = 'SELECT * FROM personaje';
 $result2 = $conn -> query($sql2);
 $personajes = $result2 -> fetchAll();
@@ -129,7 +133,7 @@ foreach ($concursantes as $concur){
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments">
-            <form method="post" action="process/registrar_usuario.php" id="form_user" onsubmit="return validateForm();">
+            <form method="post" action="process/add_user.php" id="form_user" onsubmit="return validateForm();">
                 <h2 class="healset">Información del concursante</h2>
                 <div class="one_third first">
                     <label for = "nombre"><b>Nombre(s)</b><span>*</span></label>
@@ -150,7 +154,9 @@ foreach ($concursantes as $concur){
                         <?php
                         foreach ($instituciones as $institucion){
                             echo ('<option value="'.$institucion['id_institucion'].'"');
-                            if ($institucion['id_institucion']);
+                            if ($institucion['id_institucion'] == $concur['id_institucion']);{
+                                echo ('selected');
+                            }
                             echo ('>'.utf8_encode($institucion['nombre']).'</option>');
                         } ?>
                     </select>
@@ -159,6 +165,14 @@ foreach ($concursantes as $concur){
                     <label for="combo_carrera"><b>Carrera / Estudios</b><span>*</span></label>
                     <select class="slcb" name="combo_carrera" id="combo_carrera">
                         <option value="0">═══ Seleccione una institución ═══</option>
+                        <?php
+                        foreach ($carreras as $carrera) {
+                            if ($carrera['id_institucion'] == $concur['id_institucion']) ;
+                            {
+                                echo('selected');
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="one_third">
@@ -167,7 +181,11 @@ foreach ($concursantes as $concur){
                         <option value="0" >══════ Elige tu personaje ══════</option>
                         <?php
                         foreach ($personajes as $personaje){
-                            echo '<option value="'.$personaje['idPersonaje'].'">'.utf8_encode($personaje['nombre']).'</option>';
+                            echo ('<option value="'.$personaje['idPersonaje'].'"');
+                            if ($personaje["idPersonaje"]==$concur["id_personaje"]){
+                                echo ('selected');
+                            }
+                            echo ('>'.utf8_encode($personaje['nombre']).'</option>');
                         } ?>
                     </select>
                 </div>
@@ -178,7 +196,7 @@ foreach ($concursantes as $concur){
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>
-                    <input class="" id="password" name="password" type="password" placeholder="Contraseña" >
+                    <input class="" id="password" name="password" type="password" placeholder="Contraseña">
                 </div>
                 <div class="one_third">
                     <label for="email"><b>Email</b><span>*</span></label>
@@ -189,7 +207,7 @@ foreach ($concursantes as $concur){
                         <input type="submit" name="submit" value="Registrarse">
                     </div>
                     <div class="one_half center">
-                        <input type="reset" value="Limpiar Campos">
+                        <input type="reset" onclick="location.href='reporte_users.php'" value="Cancelar">
                     </div>
                 </div>
             </form>

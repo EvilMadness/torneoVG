@@ -1,4 +1,8 @@
 <?php
+session_start();
+/*if (isset($_SESSION["nickname"])==false){
+    header("Location:../index.php");
+}*/
 /**
  * Created by PhpStorm.
  * User: MnDMzTR
@@ -10,6 +14,8 @@ $sql = 'SELECT * FROM concursante
 INNER JOIN personaje p on concursante.id_personaje = p.idPersonaje';
 $result = $conn -> query($sql);
 $datos = $result -> fetchAll();
+$total = count($datos);
+$vacantes = (32-$total);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +28,14 @@ $datos = $result -> fetchAll();
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
-
+<script>
+    function confirmDelete(user) {
+        if (confirm("¿Estas seguro de eliminar al usuario "+user+"?")==true){
+            return true;
+        }else
+            return false;
+    }
+</script>
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -58,18 +71,26 @@ $datos = $result -> fetchAll();
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a class="drop active" href="#">Registro</a>
+                <?php
+                if (isset($_SESSION["nickname"])){?>
+                <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
-                        <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
-                        <li><a  href="#">Resgistrarse</a></li>
+                        <li><a href="logoff.php">Cerrar Sesión</a></li>
                     </ul>
-                </li>
+                    <?php } else {?>
+                <li><a class="drop" href="#">REGISTRO</a>
+                    <ul>
+                        <li><a href="../pags/login.php">Iniciar Sesión</a></li>
+                        <li><a href="../pags/form_registro.php">Registrarse</a></li>
+                    </ul>
+                    <?php } ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->
     </header>
-
     <div class="wrapper row3 bgded overlay2 fondoformulario">
+            <h2 class="contador">Total <br> registrados <br><?php echo $total?> </h2>
+            <h2 class="contador2">Cupos <br> disponibles <br><?php echo $vacantes?></h2>
         <main class="hoc container clear">
             <div id="comments">
                 <div align="center">
@@ -80,8 +101,9 @@ $datos = $result -> fetchAll();
                             <th>Img</th>
                             <th>Personaje</th>
                             <th>Correo</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <?php if (isset($_SESSION["nickname"])){
+                            echo '<th>Acciones</th>';
+                             } ?>
                         </tr>
                         <?php
                         foreach ($datos as $dato){
@@ -91,21 +113,27 @@ $datos = $result -> fetchAll();
                                 <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
                                 <td><?php echo $dato['nombre'];?></td>
                                 <td><?php echo $dato['email'];?></td>
-
-                                <td><a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>">Editar</a></td>
-                                <td><a href="eliminar_libros.php?id=<?php echo $row['id_libro'];?>"
-                                       onclick="return confirmDelete('<?php echo $row['titulo'];?>')">Eliminar</a></td>
+                                <?php if (isset($_SESSION["nickname"])){ ?>
+                                    <td style="padding: 0px"><a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Edit.png"></a>
+                                        <a href="process/remove_user.php?id=<?php echo $dato['idConcursante'];?>"onclick="return confirmDelete('<?php echo $dato['nickname'];?>')"><img src="../images/icon/delete.png"></a></td> '
+                                <?php } ?>
                             </tr>
                         <?php } ?>
                     </table>
                     <?php
                     $datos = count($datos);
                     if ($datos==0){
-                        echo '<h2>No hay concursantes registrados</h2>';
+                        echo '<h2 class="healsettabla">No hay concursantes registrados</h2>';
                     }
                     ?>
-                    <br>
-                    <input type="button" onclick="location.href='grabar_libros.php';" value="Agregar Nuevo" />
+                </div><br>
+                <div class="center">
+                    <?php
+                    if (isset($_SESSION["nickname"])){ ?>
+                        <input type="submit" onclick="location.href='form_registro.php';" value="Registrar nuevo concursante">
+                    <?php } else {?>
+                    <input type="submit" onclick="location.href='form_registro.php';" value="Registrate" >
+                    <?php } ?>
                 </div>
             </div>
         </main>

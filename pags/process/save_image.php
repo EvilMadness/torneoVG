@@ -11,13 +11,12 @@ $ext = pathinfo($foto_name,PATHINFO_EXTENSION);
 $foto_name=$idpersonaje.".$ext";
 if($conn){
     if (subirFoto($_FILES['imagen'], $idpersonaje, $ext)) {
+        echo '<script>alert("Imagen guardada correctamente.")</script>';
         guardar_foto($idpersonaje, $foto_name, $conn);
-        '<script>alert("KYC PRRO")</script>';
         header("Location:../subir_imagen.php");
     } else {
-        mensaje("Error subiendo la foto");
+        echo '<script>alert("Error, la imagen no se ha podido subir.")</script>';
         header("Location:../subir_imagen.php");
-        echo "no se subió la foto";
     }
 }else{
     mensaje("Error de comunicación con la base de datos");

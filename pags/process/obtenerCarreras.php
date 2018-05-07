@@ -18,7 +18,8 @@ if (empty($carreras)) {
 elseif ($campo_elegido >= 2){
     echo '<option value="0" >════════ Seleccione ════════</option>';
     echo '<option value="18" >Otro</option>';
-}elseif ($campo_elegido == 1){
+}
+elseif ($campo_elegido == 1){
     echo $resultado1;
     foreach ($carreras as $carrera){
         echo '<option value="'.$carrera['idCarrera'].'">'.utf8_encode($carrera['nombre_carrera']).'</option>';

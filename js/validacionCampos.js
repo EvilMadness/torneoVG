@@ -1,3 +1,4 @@
+
 function validateForm() {
     <!--Validación-->
     var Fields = [document.getElementById('nombre').value, document.getElementById("apaterno").value,

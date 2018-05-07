@@ -61,6 +61,7 @@ $personajes = $result2 -> fetchAll();
             document.getElementById("combo_carrera").innerHTML = objeto_AJAX.responseText;
         }
     }
+
 </script>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -93,11 +94,7 @@ $personajes = $result2 -> fetchAll();
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a class="drop active" href="#">Registro</a>
-                    <ul>
-                        <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
-                        <li><a  href="#">Resgistrarse</a></li>
-                    </ul>
+                <li><a href="login.php">Iniciar Sesión</a>
                 </li>
             </ul>
         </nav>
@@ -107,7 +104,7 @@ $personajes = $result2 -> fetchAll();
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments">
-            <form method="post" action="process/registrar_usuario.php" id="form_user" onsubmit="return validateForm();">
+            <form method="post" action="process/add_user.php" id="form_user" onsubmit="return validateForm();">
                 <h2 class="healset">Información del concursante</h2>
                 <div class="one_third first">
                     <label for = "nombre"><b>Nombre(s)</b><span>*</span></label>
@@ -150,7 +147,7 @@ $personajes = $result2 -> fetchAll();
                 <h2 class="healset">Información de la cuenta</h2>
                 <div class="one_third first form-group">
                     <label for="nickname"><b>Nickname / Username</b><span>*</span></label>
-                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" >
+                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario">
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>

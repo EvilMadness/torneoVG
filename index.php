@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--
 Template Name: Escarine-Biz
@@ -50,11 +53,21 @@ Licence URI: http://www.os-templates.com/template-terms
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <li class="active"><a href="index.php">Inicio</a></li>
-        <li><a class="drop" href="#">Registro</a>
-          <ul>
-            <li><a href="pags/login.php">Iniciar Sesión</a></li>
-            <li><a href="pags/form_registro.php">Resgistrarse</a></li>
-          </ul>
+          <?php
+          if (isset($_SESSION["nickname"])){?>
+              <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Cerrar Sesión</a></li>
+                      <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a></li>
+                  </ul>
+          <?php } else {?>
+          <li><a class="drop" href="#">REGISTRO</a>
+              <ul>
+                  <li><a href="pags/login.php">Iniciar Sesión</a></li>
+                  <li><a href="pags/form_registro.php">Registrarse</a></li>
+                  <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a></li>
+              </ul>
+          <?php } ?>
         </li>
       </ul>
     </nav>
@@ -68,7 +81,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article class="introtxt">
-      <h3 class="heading underline center fondosombreado">3° Torneo de  Smash Bros</h3>
+      <h3 class="heading underline center fondosombreado">4° Torneo de  Smash Bros</h3>
       <h6 class="fondosombreado" ">
         Feria Academica Cultural CUValles 2018
       </h6>
