@@ -95,12 +95,13 @@ $vacantes = (32-$total);
             <div id="comments">
                 <div align="center">
                     <h2 class="healset2">Lista de concursantes</h2>
-                    <table class="tablapos" border="1" width="70%" style="background-color: #469599">
+                    <table class="tablapos" border="1" width="80%" style="background-color: #469599">
                         <tr>
                             <th>Nickname</th>
                             <th>Img</th>
                             <th>Personaje</th>
                             <th>Correo</th>
+                            <th>Nombre</th>
                             <?php if (isset($_SESSION["tipo"])){
                                 if ($_SESSION["tipo"]==2){
                                     echo '<th>Acciones</th>';
@@ -115,6 +116,7 @@ $vacantes = (32-$total);
                                 <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
                                 <td><?php echo $dato['nombre'];?></td>
                                 <td><?php echo $dato['email'];?></td>
+                                <td><?php echo utf8_encode($dato['nombres']);?></td>
                                 <?php if (isset($_SESSION["tipo"])){
                                     if ($_SESSION["tipo"]==2){ ?>
                                     <td style="padding: 0px"><a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Edit.png"></a>
@@ -134,9 +136,13 @@ $vacantes = (32-$total);
                 <div class="center">
                     <?php
                     if (isset($_SESSION["tipo"])){
-                        if ($_SESSION["tipo"]==2){?>
+                        if ($_SESSION["tipo"]==2 && $total<32){?>
                         <input type="submit" onclick="location.href='form_registro.php';" value="Registrar nuevo concursante">
-                    <?php }} else {?>
+                    <?php
+                        } elseif ($total==32){
+                            echo '<h2 class="healsettabla2">Registro lleno</h2>';
+                         }
+                    } elseif ($total<32) {?>
                     <input type="submit" onclick="location.href='form_registro.php';" value="Registrate" >
                     <?php } ?>
                 </div>

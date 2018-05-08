@@ -1,5 +1,13 @@
 <?php
+
 require_once "conexion_bd.php";
+session_start();
+if (isset($_SESSION["tipo"])==false){
+    header("Location:../index.php");
+}
+elseif ($_SESSION["tipo"]==1){
+    header("Location:../index.php");
+}
 
 $idconcursante = $_GET["id"];
 $idconcursante = (int)$idconcursante;
@@ -80,12 +88,19 @@ $personajes = $result2 -> fetchAll();
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a class="drop active" href="#">Registro</a>
+                <?php
+                if (isset($_SESSION["nickname"])){?>
+                <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?> (Edición)</a>
                     <ul>
-                        <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
-                        <li><a  href="#">Resgistrarse</a></li>
+                        <li><a href="logoff.php">Cerrar Sesión</a></li>
                     </ul>
-                </li>
+                    <?php } else {?>
+                <li><a class="drop" href="#">REGISTRO</a>
+                    <ul>
+                        <li><a href="../pags/login.php">Iniciar Sesión</a></li>
+                        <li><a href="../pags/form_registro.php">Registrarse</a></li>
+                    </ul>
+                    <?php } ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->

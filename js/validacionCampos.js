@@ -6,7 +6,7 @@ function validateForm() {
         document.getElementById("combo_carrera").selectedIndex, document.getElementById("combo_personaje").selectedIndex,
         document.getElementById("nickname").value, document.getElementById("password").value, document.getElementById("email").value];
     var Id = ["nombre", "apaterno", "amaterno", "combo_instituto", "combo_carrera", "combo_instituto", "nickname", "password", "email"];
-    var FieldNames = ["nombre","apellido paterno", "apellido materno", "institucion", "carrera", "personaje", "nickname", "password", "email"];
+    var FieldNames = ["nombre","apellido paterno", "apellido materno", "institucion", "carrera", "personaje", "nickname", "contraseña", "email"];
     for (var i = 0; i < Fields.length; i++) {
         if (!check(Fields[i], Id[i], FieldNames[i]))
             return false;
