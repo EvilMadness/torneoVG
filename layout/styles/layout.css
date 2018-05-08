@@ -472,8 +472,8 @@ h1,h2,h3,h4,h5,h6{
 	padding: 5px;
 	font-weight: bold;
 	float: left;
-	position: relative;
-	top: 10px;
+	position: fixed;
+	top: 130px;
 	left: 5px;
 	text-align: center;
 	text-transform: capitalize;
@@ -486,8 +486,8 @@ h1,h2,h3,h4,h5,h6{
 	width: auto;
 	font-weight: bold;
 	float: right;
-	position: relative;
-	top: 10px;
+	position: fixed;
+	top: 130px;
 	right: 5px;
 	text-align: center;
 	text-transform: capitalize;

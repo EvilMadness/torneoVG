@@ -49,42 +49,6 @@ $personajes = $result2 -> fetchAll();
 
 
 </head>
-<script language="JavaScript" type="text/javascript">
-    function crear_objeto_XMLHttpRequest() {
-        try {
-            objeto = new XMLHttpRequest();
-        } catch(err1) {
-            try {
-                objeto = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (err2) {
-                try {
-                    objeto = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (err3) {
-                    objeto = false;
-                }
-            }
-        }
-        return objeto;
-    }
-    /* Aquí acaba la definición de la función que se usará para instaciar objetos XMLHttpRequest */
-    var objeto_AJAX = crear_objeto_XMLHttpRequest();
-    /* La siguiente función se ejecuta cuando es invocada por un cambio en el control de la lista de departamentos. */
-    function pedirDatos(){
-        var URL = "process/obtenerCarreras.php";
-        objeto_AJAX.open("POST", URL, true);
-        objeto_AJAX.onreadystatechange = muestraResultado;
-        objeto_AJAX.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        objeto_AJAX.send("campo_seleccionado="+document.getElementById("combo_instituto").value);
-    }
-
-    /* La siguiente función se ejecuta cuando se recibe una respuesta del servidor. */
-    function muestraResultado(){
-        if (objeto_AJAX.readyState == 4 && objeto_AJAX.status == 200)
-        {
-            document.getElementById("combo_carrera").innerHTML = objeto_AJAX.responseText;
-        }
-    }
-</script>
 <body id="top">
 <!-- ################################################################################################ -->
 <div class="wrapper row0">
@@ -128,7 +92,7 @@ $personajes = $result2 -> fetchAll();
     </header>
 </div>
 <?php
-foreach ($concursantes as $concur){
+foreach ($concursantes as $concursante){
 ?>
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
@@ -137,15 +101,15 @@ foreach ($concursantes as $concur){
                 <h2 class="healset">Información del concursante</h2>
                 <div class="one_third first">
                     <label for = "nombre"><b>Nombre(s)</b><span>*</span></label>
-                    <input type="text" name="nombre" id="nombre" size="100" placeholder="Nombre(s) del concursante" maxlength="30" value="<?php echo $concur["nombres"];?>"><br>
+                    <input type="text" name="nombre" id="nombre" size="100" placeholder="Nombre(s) del concursante" maxlength="30" value="<?php echo $concursante["nombres"];?>"><br>
                 </div>
                 <div class="one_third">
                     <label for = "apaterno"><b>Apellido Paterno</b><span>*</span></label>
-                    <input type="text" name="apaterno" id="apaterno" size="200" placeholder="Apellido Paterno del concursante" maxlength="25" value="<?php echo $concur["apaterno"];?>"><br>
+                    <input type="text" name="apaterno" id="apaterno" size="200" placeholder="Apellido Paterno del concursante" maxlength="25" value="<?php echo $concursante["apaterno"];?>"><br>
                 </div>
                 <div class="one_third">
                     <label for = "amaterno"><b>Apellido Materno</b><span>*</span></label>
-                    <input type="text" name="amaterno" id="amaterno" size="200" placeholder="Apellido Materno del concursante" maxlength="25" value="<?php echo $concur["amaterno"];?>"><br>
+                    <input type="text" name="amaterno" id="amaterno" size="200" placeholder="Apellido Materno del concursante" maxlength="25" value="<?php echo $concursante["amaterno"];?>"><br>
                 </div>
                 <div class="one_third first">
                     <label for="combo_instituto"><b>Institución Educativa</b><span>*</span></label>
@@ -154,7 +118,7 @@ foreach ($concursantes as $concur){
                         <?php
                         foreach ($instituciones as $institucion){
                             echo ('<option value="'.$institucion['id_institucion'].'"');
-                            if ($institucion['id_institucion'] == $concur['id_institucion']);{
+                            if ($institucion["id_institucion"]==$concursante["id_institucion"]){
                                 echo ('selected');
                             }
                             echo ('>'.utf8_encode($institucion['nombre']).'</option>');
@@ -166,13 +130,13 @@ foreach ($concursantes as $concur){
                     <select class="slcb" name="combo_carrera" id="combo_carrera">
                         <option value="0">═══ Seleccione una institución ═══</option>
                         <?php
-                        foreach ($carreras as $carrera) {
-                            if ($carrera['id_institucion'] == $concur['id_institucion']) ;
-                            {
-                                echo('selected');
+                        foreach ($carreras as $carrera){
+                            echo ('<option value="'.$carrera['idCarrera'].'"');
+                            if ($carrera["idCarrera"]==$concursante["idCarrera"]){
+                                echo ('selected');
                             }
-                        }
-                        ?>
+                            echo ('>'.utf8_encode($carrera['nombre_carrera']).'</option>');
+                        } ?>
                     </select>
                 </div>
                 <div class="one_third">
@@ -182,7 +146,7 @@ foreach ($concursantes as $concur){
                         <?php
                         foreach ($personajes as $personaje){
                             echo ('<option value="'.$personaje['idPersonaje'].'"');
-                            if ($personaje["idPersonaje"]==$concur["id_personaje"]){
+                            if ($personaje["idPersonaje"]==$concursante["id_personaje"]){
                                 echo ('selected');
                             }
                             echo ('>'.utf8_encode($personaje['nombre']).'</option>');
@@ -192,7 +156,7 @@ foreach ($concursantes as $concur){
                 <h2 class="healset">Información de la cuenta</h2>
                 <div class="one_third first form-group">
                     <label for="nickname"><b>Nickname / Username</b><span>*</span></label>
-                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" value="<?php echo $concur["nickname"];?>">
+                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" value="<?php echo $concursante["nickname"];?>">
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>
@@ -200,11 +164,11 @@ foreach ($concursantes as $concur){
                 </div>
                 <div class="one_third">
                     <label for="email"><b>Email</b><span>*</span></label>
-                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" value="<?php echo $concur["email"];?>">
+                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" value="<?php echo $concursante["email"];?>">
                 </div>
                 <div>
                     <div class="one_half center first" >
-                        <input type="submit" name="submit" value="Registrarse">
+                        <input type="submit" name="submit" value="Actualizar registro">
                     </div>
                     <div class="one_half center">
                         <input type="reset" onclick="location.href='reporte_users.php'" value="Cancelar">

@@ -8,6 +8,10 @@ $instituciones = $result1 -> fetchAll();
 $sql2 = 'SELECT * FROM personaje';
 $result2 = $conn -> query($sql2);
 $personajes = $result2 -> fetchAll();
+
+$sql1 = 'SELECT * FROM carrera';
+$result1 = $conn -> query($sql1);
+$carreras = $result1 -> fetchAll();
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,43 +30,7 @@ $personajes = $result2 -> fetchAll();
 
 
 </head>
-<script language="JavaScript" type="text/javascript">
-    function crear_objeto_XMLHttpRequest() {
-        try {
-            objeto = new XMLHttpRequest();
-        } catch(err1) {
-            try {
-                objeto = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (err2) {
-                try {
-                    objeto = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (err3) {
-                    objeto = false;
-                }
-            }
-        }
-        return objeto;
-    }
-    /* Aquí acaba la definición de la función que se usará para instaciar objetos XMLHttpRequest */
-    var objeto_AJAX = crear_objeto_XMLHttpRequest();
-    /* La siguiente función se ejecuta cuando es invocada por un cambio en el control de la lista de departamentos. */
-    function pedirDatos(){
-        var URL = "process/obtenerCarreras.php";
-        objeto_AJAX.open("POST", URL, true);
-        objeto_AJAX.onreadystatechange = muestraResultado;
-        objeto_AJAX.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        objeto_AJAX.send("campo_seleccionado="+document.getElementById("combo_instituto").value);
-    }
 
-    /* La siguiente función se ejecuta cuando se recibe una respuesta del servidor. */
-    function muestraResultado(){
-        if (objeto_AJAX.readyState == 4 && objeto_AJAX.status == 200)
-        {
-            document.getElementById("combo_carrera").innerHTML = objeto_AJAX.responseText;
-        }
-    }
-
-</script>
 <body id="top">
 <!-- ################################################################################################ -->
 <div class="wrapper row0">
@@ -132,6 +100,9 @@ $personajes = $result2 -> fetchAll();
                     <label for="combo_carrera"><b>Carrera / Estudios</b><span>*</span></label>
                     <select class="slcb" name="combo_carrera" id="combo_carrera">
                         <option value="0">═══ Seleccione una institución ═══</option>
+                        <?php foreach ($carreras as $carrera){
+                        echo '<option value="'.$carrera['idCarrera'].'">'.utf8_encode($carrera['nombre_carrera']).'</option>';
+                        } ?>
                     </select>
                 </div>
                 <div class="one_third">

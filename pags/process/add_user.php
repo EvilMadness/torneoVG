@@ -35,22 +35,17 @@ if ($emailRes>0){
 }
 
 if ($instituto == 1){
-    $insertarDatos = "INSERT INTO concursante(nombres,apaterno,amaterno,id_rol,id_institucion,id_personaje,nickname,password,email)VALUES('$nombre','$paterno','$materno',1,$instituto,$personaje,'$nickname','$password','$email')";
+    $insertarDatos = "INSERT INTO concursante(nombres,apaterno,amaterno,id_rol,id_institucion,idCarrera ,id_personaje,nickname,password,email)VALUES('$nombre','$paterno','$materno',1,$instituto,$carrera,$personaje,'$nickname','$password','$email')";
     $concur = $conn->lastInsertId($insertarDatos);
-    $insertDato2 = "INSERT INTO carrera_institucion(id_concursante,idCarrera,id_institucion) VALUES ($concur,$carrera,$instituto)";
     if($conn -> exec($insertarDatos)) {
-        if ($conn->exec($insertDato2)) {
             echo '<script>alert("Usuario registrado correctamente.")</script>';
             header("Location:../reporte_users.php");
-        }
-        else
-            echo '<script>alert("Error con la carrera.")</script>';
     }
     else
         echo '<script>alert("Error, no se ha podido registrar el usuario.")</script>';
 }
 elseif ($instituto >1) {
-    $insertarDatos = "INSERT INTO concursante(nombres,apaterno,amaterno,id_rol,id_institucion,id_personaje,nickname,password,email)VALUES('$nombre','$paterno','$materno',1,$instituto,$personaje,'$nickname','$password','$email')";
+    $insertarDatos = "INSERT INTO concursante(nombres,apaterno,amaterno,id_rol,id_institucion,idCarrera,id_personaje,nickname,password,email)VALUES('$nombre','$paterno','$materno',1,$instituto, $carrera,$personaje,'$nickname','$password','$email')";
     if ($conn->exec($insertarDatos)) {
         echo '<script>alert("Usuario registrado correctamente.")</script>';
         header("Location:../reporte_users.php");

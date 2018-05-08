@@ -26,7 +26,7 @@ $vacantes = (32-$total);
     <link href="../css/botones.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" >
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <script>
     function confirmDelete(user) {
@@ -95,14 +95,16 @@ $vacantes = (32-$total);
             <div id="comments">
                 <div align="center">
                     <h2 class="healset2">Lista de concursantes</h2>
-                    <table border="1" width="70%" style="background-color: #469599">
+                    <table class="tablapos" border="1" width="70%" style="background-color: #469599">
                         <tr>
                             <th>Nickname</th>
                             <th>Img</th>
                             <th>Personaje</th>
                             <th>Correo</th>
-                            <?php if (isset($_SESSION["nickname"])){
-                            echo '<th>Acciones</th>';
+                            <?php if (isset($_SESSION["tipo"])){
+                                if ($_SESSION["tipo"]==2){
+                                    echo '<th>Acciones</th>';
+                                }
                              } ?>
                         </tr>
                         <?php
@@ -113,10 +115,12 @@ $vacantes = (32-$total);
                                 <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
                                 <td><?php echo $dato['nombre'];?></td>
                                 <td><?php echo $dato['email'];?></td>
-                                <?php if (isset($_SESSION["nickname"])){ ?>
+                                <?php if (isset($_SESSION["tipo"])){
+                                    if ($_SESSION["tipo"]==2){ ?>
                                     <td style="padding: 0px"><a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Edit.png"></a>
-                                        <a href="process/remove_user.php?id=<?php echo $dato['idConcursante'];?>"onclick="return confirmDelete('<?php echo $dato['nickname'];?>')"><img src="../images/icon/delete.png"></a></td> '
-                                <?php } ?>
+                                        <a href="process/remove_user.php?id=<?php echo $dato['idConcursante'];?>"onclick="return confirmDelete('<?php echo $dato['nickname'];?>')"><img src="../images/icon/delete.png"></a></td>
+                                <?php }
+                                } ?>
                             </tr>
                         <?php } ?>
                     </table>
@@ -129,9 +133,10 @@ $vacantes = (32-$total);
                 </div><br>
                 <div class="center">
                     <?php
-                    if (isset($_SESSION["nickname"])){ ?>
+                    if (isset($_SESSION["tipo"])){
+                        if ($_SESSION["tipo"]==2){?>
                         <input type="submit" onclick="location.href='form_registro.php';" value="Registrar nuevo concursante">
-                    <?php } else {?>
+                    <?php }} else {?>
                     <input type="submit" onclick="location.href='form_registro.php';" value="Registrate" >
                     <?php } ?>
                 </div>

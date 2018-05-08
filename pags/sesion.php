@@ -7,17 +7,17 @@ $pass = md5($_POST['password']);
 $sql = "SELECT * FROM concursante WHERE nickname='$usuario' AND password='$pass'";
 $res = $conn->query($sql);
 $val = $res->fetchAll();
+foreach ($val as $tipo){
+    $rol = $tipo["id_rol"];
+}
 
 $val = count($val);
-foreach ($val as $valor){
-    $tipo = $valor["id_rol"];
-}
 
 if ($val>0){
     session_start();
     $_SESSION["nickname"] = $usuario;
     $_SESSION["password"] = $pass;
-    $_SESSION["tipo"] = $valor["id_rol"];
+    $_SESSION["tipo"] = $rol;
     header("Location:../index.php");
 }
 else{
