@@ -1,8 +1,10 @@
 <?php
 session_start();
-/*if (isset($_SESSION["nickname"])==false){
+if (isset($_SESSION["nickname"])==false){
     header("Location:../index.php");
-}*/
+}
+$id = $_GET["id"];
+$id = (int)$id;
 /**
  * Created by PhpStorm.
  * User: MnDMzTR
@@ -10,10 +12,15 @@ session_start();
  * Time: 07:41 PM
  */
 require_once "conexion_bd.php";
-$sql = 'SELECT * FROM concursante
-INNER JOIN personaje p on concursante.id_personaje = p.idPersonaje';
+$sql = 'SELECT * FROM concursante INNER JOIN personaje p on concursante.id_personaje = p.idPersonaje';
+$sqlinstitucion = 'SELECT * FROM concursante INNER JOIN institucioneducativa i on concursante.id_institucion = i.id_institucion';
+$sqlcarrera = 'SELECT * FROM concursante INNER JOIN carrera c2 on concursante.idCarrera = c2.idCarrera';
 $result = $conn -> query($sql);
+$resInstituto = $conn -> query($sqlinstitucion);
+$resCarrera = $conn -> query($sqlcarrera);
 $datos = $result -> fetchAll();
+$instituciones = $resInstituto -> fetchAll();
+$carreras = $resCarrera -> fetchAll();
 $total = count($datos);
 $vacantes = (33-$total);
 ?>
@@ -88,64 +95,54 @@ $vacantes = (33-$total);
         </nav>
         <!-- ################################################################################################ -->
     </header>
+
     <div class="wrapper row3 bgded overlay2 fondoformulario">
-            <h2 class="contador">Total <br> registrados <br><?php echo $total?> </h2>
-            <h2 class="contador2">Cupos <br> disponibles <br><?php echo $vacantes?></h2>
         <main class="hoc container clear">
             <div id="comments">
                 <div align="center">
-                    <h2 class="healset2">Lista de concursantes</h2>
+                    <h2 class="healset2" style="text-transform: none">Detalle de
+                        <?php foreach ($datos as $dato){
+
+                        if ($dato["idConcursante"]==$id){
+                            echo $dato["nickname"];?></h2>
                     <table class="tablapos" border="1" width="80%" style="background-color: #469599">
                         <tr>
-                            <th>Nickname</th>
-                            <th>Img</th>
-                            <th>Personaje</th>
-                            <th>Correo</th>
-                            <th>Nombre</th>
-                            <?php if (isset($_SESSION["tipo"])){
-                                echo '<th>Acciones</th>';
-                             } ?>
+                            <th>Nombre completo</th>
+                            <td><?php echo $dato['nombres'].' '.$dato['apaterno'].' '.$dato['amaterno'];?></td>
+                            <td></td>
                         </tr>
-                        <?php
-                        foreach ($datos as $dato){
-                            ?>
-                            <tr align="center">
-                                <td><?php echo $dato['nickname'];?></td>
-                                <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
-                                <td><?php echo $dato['nombre'];?></td>
-                                <td><?php echo $dato['email'];?></td>
-                                <td><?php echo $dato['nombres'];?></td>
-                                <?php if (isset($_SESSION["tipo"])){
-                                    echo '<td style="padding: 0px">';
-                                    if ($_SESSION["nickname"]==$dato['nickname']||$_SESSION["tipo"]==2){ ?>
-                                        <a href="detail_user.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Detalle.png"></a>
-                                    <?php }
-                                    if ($_SESSION["tipo"]==2){ ?>
-                                            <a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Edit.png"></a>
-                                            <a href="process/remove_user.php?id=<?php echo $dato['idConcursante'];?>"onclick="return confirmDelete('<?php echo $dato['nickname'];?>')"><img src="../images/icon/delete.png"></a>
-                                <?php } echo '</td>';
-                                } ?>
-                            </tr>
-                        <?php } ?>
+                        <tr>
+                            <th>Institución</th>
+                            <td><?php foreach ($instituciones as $institucion){if ($institucion["idConcursante"]==$id){ echo $institucion['nombre'];}}?></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Carrera</th>
+                            <td><?php foreach ($carreras as $carrera){if ($carrera["idConcursante"]==$id){  echo utf8_encode($carrera['nombre_carrera']);}}?></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Nickname</th>
+                            <td><?php echo $dato['nickname'];?></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Personaje</th>
+                            <td><?php echo $dato['nombre'];?></td>
+                            <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Correo</th>
+                            <td><?php echo $dato['email'];?></td>
+                            <td></td>
+                        </tr>
+                        <?php }}?>
                     </table>
-                    <?php
-                    $datos = count($datos);
-                    if ($datos==0){
-                        echo '<h2 class="healsettabla">No hay concursantes registrados</h2>';
-                    }
-                    ?>
                 </div><br>
                 <div class="center">
                     <?php
-                    if (isset($_SESSION["tipo"])){
-                        if ($_SESSION["tipo"]==2 && $total<32){?>
-                        <input type="submit" onclick="location.href='form_registro.php';" value="Registrar nuevo concursante">
-                    <?php
-                        } elseif ($total==32){
-                            echo '<h2 class="healsettabla2">Registro lleno</h2>';
-                         }
-                    } elseif ($total<32) {?>
-                    <input type="submit" onclick="location.href='form_registro.php';" value="Registrate" >
+                    if (isset($_SESSION["tipo"])){?>
+                        <input type="submit" onclick="location.href='reporte_users.php';" value="Regresar" >
                     <?php } ?>
                 </div>
             </div>
@@ -162,21 +159,17 @@ $vacantes = (33-$total);
                     <h6 class="title">Contacto</h6>
                     <address class="btmspace-15">
                         Luis Ángel García Castro<br>
-                        Carretera Guadalajara - Ameca Km 45.5<br>
-                        Ameca, Jalisco, México<br>
+                        Carretera Guadalajara - Ameca Km 45.5
+                        Ameca, Jalisco, México
                         C.P. 46600
                     </address>
+                </div>
+                <div class="one_half">
+                    <h6 class="title">Comunicate</h6>
                     <ul class="nospace">
                         <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
                         <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
                     </ul>
-                </div>
-                <div class="one_half">
-                    <h6 class="title">Comunicate</h6>
-                    <p>Guadalajara[Matriz] (33) 3105 7071</p>
-                    <p>México D.F.  (55) 3105 7071</p>
-                    <p>Arabia Saudita.  +966 (5) 105 7071</p>
-                    <p>Ahualulco de Mdo.  (386) 105 7071</p>
                 </div>
             </div>
             <!-- ################################################################################################ -->
@@ -185,7 +178,7 @@ $vacantes = (33-$total);
     <div class="wrapper row5">
         <div id="copyright" class="hoc clear">
             <!-- ################################################################################################ -->
-            <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">AKBARIA STORE متجر أكباريا</a></p>
+            <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../index.php">Luis García</a></p>
             <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
             <!-- ################################################################################################ -->
         </div>

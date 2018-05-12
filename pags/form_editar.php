@@ -112,7 +112,7 @@ foreach ($concursantes as $concursante){
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments">
-            <form method="post" action="process/add_user.php" id="form_user" onsubmit="return validateForm();">
+            <form method="post" action="process/edit_user.php?id=<?php echo $concursante['idConcursante'] ?> " id="form_user" onsubmit="return validateFormEdit();">
                 <h2 class="healset">Información del concursante</h2>
                 <div class="one_third first">
                     <label for = "nombre"><b>Nombre(s)</b><span>*</span></label>
