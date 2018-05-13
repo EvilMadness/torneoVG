@@ -94,8 +94,11 @@ $vacantes = (33-$total);
         <main class="hoc container clear">
             <div id="comments">
                 <div align="center">
+                    <div class="one_quarter first">
+                        <input type="text" id="search" placeholder="Buscar concursante" class="">
+                    </div>
                     <h2 class="healset2">Lista de concursantes</h2>
-                    <table class="tablapos" border="1" width="80%" style="background-color: #469599">
+                    <table class="tablapos" border="1" width="80%" style="background-color: #469599" id="result">
                         <tr>
                             <th>Nickname</th>
                             <th>Img</th>
@@ -114,7 +117,7 @@ $vacantes = (33-$total);
                                 <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
                                 <td><?php echo $dato['nombre'];?></td>
                                 <td><?php echo $dato['email'];?></td>
-                                <td><?php echo $dato['nombres'];?></td>
+                                <td><?php echo utf8_encode($dato['nombres']);?></td>
                                 <?php if (isset($_SESSION["tipo"])){
                                     echo '<td style="padding: 0px">';
                                     if ($_SESSION["nickname"]==$dato['nickname']||$_SESSION["tipo"]==2){ ?>
@@ -192,8 +195,8 @@ $vacantes = (33-$total);
         <!-- ################################################################################################ -->
         <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
     </div>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src=""></script>
+    <script type="application/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="../js/buscador.js"></script>
 </body>
 </html>

@@ -100,8 +100,9 @@ $carreras = $result1 -> fetchAll();
                     <label for="combo_carrera"><b>Carrera / Estudios</b><span>*</span></label>
                     <select class="slcb" name="combo_carrera" id="combo_carrera">
                         <option value="0">═══ Seleccione una institución ═══</option>
+
                         <?php foreach ($carreras as $carrera){
-                        echo '<option value="'.$carrera['idCarrera'].'">'.utf8_encode($carrera['nombre_carrera']).'</option>';
+                        echo '<option value="'.$carrera['idCarrera'].'">'.$carrera["idCarrera"].utf8_encode($carrera['nombre_carrera']).'</option>';
                         } ?>
                     </select>
                 </div>

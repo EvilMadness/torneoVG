@@ -108,7 +108,7 @@ $vacantes = (33-$total);
                     <table class="tablapos" border="1" width="80%" style="background-color: #469599">
                         <tr>
                             <th>Nombre completo</th>
-                            <td><?php echo $dato['nombres'].' '.$dato['apaterno'].' '.$dato['amaterno'];?></td>
+                            <td><?php echo utf8_encode($dato['nombres'].' '.$dato['apaterno'].' '.$dato['amaterno']);?></td>
                             <td></td>
                         </tr>
                         <tr>
