@@ -83,6 +83,7 @@ $vacantes = (33-$total);
                 <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
                         <li><a href="logoff.php">Cerrar Sesión</a></li>
+                        <li><a href="reporte_users.php">Ver reporte completo</a></li>
                     </ul>
                     <?php } else {?>
                 <li><a class="drop" href="#">REGISTRO</a>

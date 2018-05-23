@@ -19,7 +19,6 @@ function check(field, id, namefield) {
     }
     if (field === 0 || field === null){
         return messageAlert("El campo "+namefield+" no esta selecionado!", id);
-
     }
 
     return true;
