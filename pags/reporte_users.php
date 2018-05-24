@@ -14,8 +14,8 @@ $sql = 'SELECT * FROM concursante
 INNER JOIN personaje p on concursante.id_personaje = p.idPersonaje';
 $result = $conn -> query($sql);
 $datos = $result -> fetchAll();
-$total = count($datos);
-$vacantes = (33-$total);
+$total = count($datos)-1;
+$vacantes = (32-$total);
 ?>
 <!DOCTYPE html>
 <html lang="en">

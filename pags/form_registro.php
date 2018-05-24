@@ -22,13 +22,7 @@ $carreras = $result1 -> fetchAll();
     <link href="../css/botones.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" >
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
-
-    <script src="../js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
-    <script src="../js/bootstrap-select.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../css/msdropdown/dd.css" />
-
 
 </head>
 
@@ -111,7 +105,7 @@ $carreras = $result1 -> fetchAll();
                         <option value="0">═══ Seleccione una institución ═══</option>
 
                         <?php foreach ($carreras as $carrera){
-                        echo '<option value="'.$carrera['idCarrera'].'">'.utf8_encode($carrera['nombre_carrera']).'</option>';
+                        echo '<option value="'.$carrera['idCarrera'].'">'.$carrera['nombre_carrera'].'</option>';
                         } ?>
                     </select>
                 </div>
@@ -128,7 +122,8 @@ $carreras = $result1 -> fetchAll();
                 <h2 class="healset">Información de la cuenta</h2>
                 <div class="one_third first form-group">
                     <label for="nickname"><b>Nickname / Username</b><span>*</span></label>
-                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario">
+                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" onkeyup="verificar_nickname()" >
+                    <label id="nickexist"></label>
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>
@@ -136,7 +131,8 @@ $carreras = $result1 -> fetchAll();
                 </div>
                 <div class="one_third">
                     <label for="email"><b>Email</b><span>*</span></label>
-                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" >
+                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" onkeyup="verificar_email()" >
+                    <label id="emailexist"></label>
                 </div>
                 <div>
                     <div class="one_half center first" >
@@ -187,7 +183,34 @@ $carreras = $result1 -> fetchAll();
     <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/validacionCampos.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function verificar_nickname() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "nickname" : $("#nickname").val()
+            },
+            type: 'post',
+            url: 'process/search_nick.php',
+            success:function (response) {
+                $('#nickexist').html(response);
+            }
+        });
+    }
+    function verificar_email() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "email" : $("#email").val()
+            },
+            type: 'post',
+            url: 'process/search_mail.php',
+            success:function (response) {
+                $('#emailexist').html(response);
+            }
+        });
+    }
+</script>
 </body>
 </html>

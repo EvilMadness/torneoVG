@@ -150,7 +150,7 @@ foreach ($concursantes as $concursante){
                             if ($carrera["idCarrera"]==$concursante["idCarrera"]){
                                 echo ('selected');
                             }
-                            echo ('>'.utf8_encode($carrera['nombre_carrera']).'</option>');
+                            echo ('>'.$carrera['nombre_carrera'].'</option>');
                         } ?>
                     </select>
                 </div>

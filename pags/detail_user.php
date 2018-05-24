@@ -119,7 +119,7 @@ $vacantes = (33-$total);
                         </tr>
                         <tr>
                             <th>Carrera</th>
-                            <td><?php foreach ($carreras as $carrera){if ($carrera["idConcursante"]==$id){  echo utf8_encode($carrera['nombre_carrera']);}}?></td>
+                            <td><?php foreach ($carreras as $carrera){if ($carrera["idConcursante"]==$id){  echo ($carrera['nombre_carrera']);}}?></td>
                             <td></td>
                         </tr>
                         <tr>
