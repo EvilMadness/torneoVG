@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "conexion_bd.php";
 
 $sql1 = 'SELECT * FROM institucioneducativa';
@@ -21,13 +22,7 @@ $carreras = $result1 -> fetchAll();
     <link href="../css/botones.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" >
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
-
-    <script src="../js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
-    <script src="../js/bootstrap-select.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../css/msdropdown/dd.css" />
-
 
 </head>
 
@@ -62,8 +57,16 @@ $carreras = $result1 -> fetchAll();
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a href="login.php">Iniciar Sesión</a>
-                </li>
+                <?php
+                if (isset($_SESSION["tipo"])){
+                    if ($_SESSION["tipo"]==2){?>
+                <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
+                    <ul>
+                        <li><a href="logoff.php">Cerrar Sesión</a></li>
+                        <li><a href="reporte_users.php">Ver tabla concursantes</a></li>
+                        <li><a href="subir_imagen.php">Subir imagen</a></li>
+                    </ul>
+                    <?php }} ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->
@@ -102,7 +105,7 @@ $carreras = $result1 -> fetchAll();
                         <option value="0">═══ Seleccione una institución ═══</option>
 
                         <?php foreach ($carreras as $carrera){
-                        echo '<option value="'.$carrera['idCarrera'].'">'.$carrera["idCarrera"].utf8_encode($carrera['nombre_carrera']).'</option>';
+                        echo '<option value="'.$carrera['idCarrera'].'">'.$carrera['nombre_carrera'].'</option>';
                         } ?>
                     </select>
                 </div>
@@ -119,7 +122,8 @@ $carreras = $result1 -> fetchAll();
                 <h2 class="healset">Información de la cuenta</h2>
                 <div class="one_third first form-group">
                     <label for="nickname"><b>Nickname / Username</b><span>*</span></label>
-                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario">
+                    <input class="" id="nickname" name="nickname" type="text" placeholder="Nombre de usuario" onkeyup="verificar_nickname()" >
+                    <label id="nickexist"></label>
                 </div>
                 <div class="one_third">
                     <label for="password"><b>Contraseña</b><span>*</span></label>
@@ -127,7 +131,8 @@ $carreras = $result1 -> fetchAll();
                 </div>
                 <div class="one_third">
                     <label for="email"><b>Email</b><span>*</span></label>
-                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" >
+                    <input class="" id="email" name="email" type="email" placeholder="Correo electronico" onkeyup="verificar_email()" >
+                    <label id="emailexist"></label>
                 </div>
                 <div>
                     <div class="one_half center first" >
@@ -152,30 +157,25 @@ $carreras = $result1 -> fetchAll();
                 <h6 class="title">Contacto</h6>
                 <address class="btmspace-15">
                     Luis Ángel García Castro<br>
-                    Carretera Guadalajara - Ameca Km 45.5<br>
-                    Ameca, Jalisco, México<br>
+                    Carretera Guadalajara - Ameca Km 45.5
+                    Ameca, Jalisco, México
                     C.P. 46600
                 </address>
+            </div>
+            <div class="one_half">
+                <h6 class="title">Comunicate</h6>
                 <ul class="nospace">
                     <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
                     <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
                 </ul>
             </div>
-            <div class="one_half">
-                <h6 class="title">Comunicate</h6>
-                <p>Guadalajara[Matriz] (33) 3105 7071</p>
-                <p>México D.F.  (55) 3105 7071</p>
-                <p>Arabia Saudita.  +966 (5) 105 7071</p>
-                <p>Ahualulco de Mdo.  (386) 105 7071</p>
-            </div>
         </div>
-        <!-- ################################################################################################ -->
     </footer>
 </div>
 <div class="wrapper row5">
     <div id="copyright" class="hoc clear">
         <!-- ################################################################################################ -->
-        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">AKBARIA STORE متجر أكباريا</a></p>
+        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">Luis A. García</a></p>
         <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
         <!-- ################################################################################################ -->
     </div>
@@ -183,7 +183,34 @@ $carreras = $result1 -> fetchAll();
     <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/validacionCampos.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function verificar_nickname() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "nickname" : $("#nickname").val()
+            },
+            type: 'post',
+            url: 'process/search_nick.php',
+            success:function (response) {
+                $('#nickexist').html(response);
+            }
+        });
+    }
+    function verificar_email() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "email" : $("#email").val()
+            },
+            type: 'post',
+            url: 'process/search_mail.php',
+            success:function (response) {
+                $('#emailexist').html(response);
+            }
+        });
+    }
+</script>
 </body>
 </html>

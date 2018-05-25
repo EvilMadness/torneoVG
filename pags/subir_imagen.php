@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (isset($_SESSION["tipo"])==false){
+    if ($_SESSION["tipo"]!=2){
+        header("Location:../index.php");
+    }
+}
 include "conexion_bd.php";
  $sql = 'SELECT * FROM personaje';
  $result = $conn ->query($sql);
@@ -52,12 +58,14 @@ include "conexion_bd.php";
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a class="drop active" href="#">Registro</a>
+                <?php
+                if (isset($_SESSION["nickname"])){?>
+                <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
-                        <li><a href="pags/formularios/captura_vendedores.html">Iniciar Sesión</a></li>
-                        <li><a  href="#">Resgistrarse</a></li>
+                        <li><a href="logoff.php">Cerrar Sesión</a></li>
+                        <li><a href="reporte_users.php">Ver tabla concursantes</a></li>
                     </ul>
-                </li>
+                    <?php } ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->
@@ -87,41 +95,35 @@ include "conexion_bd.php";
         </div>
     </main>
 </div>
-
-<!--<div class="wrapper row4">
+<div class="wrapper row4">
     <footer id="footer" class="hoc topspace-0 clear">
-        <!-- ################################################################################################ --
+        <!-- ################################################################################################ -->
         <br>
-        <!-- ################################################################################################ --
+        <!-- ################################################################################################ -->
         <div class="group">
             <div class="one_half first">
                 <h6 class="title">Contacto</h6>
                 <address class="btmspace-15">
                     Luis Ángel García Castro<br>
-                    Carretera Guadalajara - Ameca Km 45.5<br>
-                    Ameca, Jalisco, México<br>
+                    Carretera Guadalajara - Ameca Km 45.5
+                    Ameca, Jalisco, México
                     C.P. 46600
                 </address>
+            </div>
+            <div class="one_half">
+                <h6 class="title">Comunicate</h6>
                 <ul class="nospace">
                     <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
                     <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
                 </ul>
             </div>
-            <div class="one_half">
-                <h6 class="title">Comunicate</h6>
-                <p>Guadalajara[Matriz] (33) 3105 7071</p>
-                <p>México D.F.  (55) 3105 7071</p>
-                <p>Arabia Saudita.  +966 (5) 105 7071</p>
-                <p>Ahualulco de Mdo.  (386) 105 7071</p>
-            </div>
         </div>
-        <!-- ################################################################################################ --
     </footer>
-</div>-->
+</div>
 <div class="wrapper row5">
     <div id="copyright" class="hoc clear">
         <!-- ################################################################################################ -->
-        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">AKBARIA STORE متجر أكباريا</a></p>
+        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">Luis A. García</a></p>
         <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
         <!-- ################################################################################################ -->
     </div>

@@ -83,6 +83,7 @@ $vacantes = (33-$total);
                 <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
                         <li><a href="logoff.php">Cerrar Sesión</a></li>
+                        <li><a href="reporte_users.php">Ver reporte completo</a></li>
                     </ul>
                     <?php } else {?>
                 <li><a class="drop" href="#">REGISTRO</a>
@@ -118,7 +119,7 @@ $vacantes = (33-$total);
                         </tr>
                         <tr>
                             <th>Carrera</th>
-                            <td><?php foreach ($carreras as $carrera){if ($carrera["idConcursante"]==$id){  echo utf8_encode($carrera['nombre_carrera']);}}?></td>
+                            <td><?php foreach ($carreras as $carrera){if ($carrera["idConcursante"]==$id){  echo ($carrera['nombre_carrera']);}}?></td>
                             <td></td>
                         </tr>
                         <tr>

@@ -46,7 +46,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <header id="header" class="hoc clear">
         <!-- ################################################################################################ -->
         <div id="logo" class="fl_left">
-            <h1><a href="index.php">Torneo de videojuegos</a></h1>
+            <h1><a href="../index.php">Torneo de videojuegos</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
@@ -81,13 +81,12 @@ Licence URI: http://www.os-templates.com/template-terms
                     <input class="btnagregar" type="submit" value="Iniciar Sesión"/>
                 </div>
                 <div>
-                    <span class="fondoLink"><a class="fondoLink" href="form_registro.php">¿Aún no tienes una cuenta? ¡Registrate aquí!</span>
+                    <span class="fondoLink"><a class="fondoLink" href="form_registro.php">¿Aún no tienes una cuenta? ¡Registrate aquí!</a></span>
                 </div>
             </form>
         </div>
     </main>
 </div>
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
     <footer id="footer" class="hoc topspace-0 clear">
         <!-- ################################################################################################ -->
@@ -99,29 +98,29 @@ Licence URI: http://www.os-templates.com/template-terms
                 <address class="btmspace-15">
                     Luis Ángel García Castro<br>
                     Carretera Guadalajara - Ameca Km 45.5
-                    Ameca, Jalisco, México C.P. 46600
+                    Ameca, Jalisco, México
+                    C.P. 46600
                 </address>
+            </div>
+            <div class="one_half">
+                <h6 class="title">Comunicate</h6>
                 <ul class="nospace">
                     <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
                     <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
                 </ul>
             </div>
-            <div class="one_half">
-                <h6 class="title">Comunicate</h6>
-                <p>Guadalajara[Matriz] (33) 3105 7071</p>
-                <p>México D.F.  (55) 3105 7071</p>
-            </div>
         </div>
-        <!-- ################################################################################################ -->
     </footer>
 </div>
 <div class="wrapper row5">
     <div id="copyright" class="hoc clear">
         <!-- ################################################################################################ -->
-        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="index.php">Luis A. García</a></p>
+        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">Luis A. García</a></p>
         <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
         <!-- ################################################################################################ -->
     </div>
+    <!-- ################################################################################################ -->
+    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>

@@ -560,3 +560,12 @@ input[type=file]{
 	font-style: unset;
 	border-radius: 4px;
 }
+.ocupado{
+	color: red;
+	font-weight: bold;
+	background-color: rgba(214, 214, 214, 0.51);
+}
+.disponible{
+	color: #00ff02;
+	font-weight: bold;
+}

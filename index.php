@@ -54,7 +54,28 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul class="clear">
         <li class="active"><a href="index.php">Inicio</a></li>
           <?php
-          if (isset($_SESSION["nickname"])){?>
+          if (isset($_SESSION["nickname"])){
+          if ($_SESSION["tipo"]==2){ ?>
+              <li class="drop"><a href="index.php">Carrera</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar carreras</a></li>
+                      <li><a href="pags/logoff.php">Agregar carreras</a></li>
+                  </ul>
+              </li>
+              <li class="drop"><a href="index.php">Institución</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar instituciones</a></li>
+                      <li><a href="pags/logoff.php">Agregar instituciones</a></li>
+                  </ul>
+              </li>
+              <li class="drop"><a href="index.php">Personaje</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar personajes</a></li>
+                      <li><a href="pags/logoff.php">Agregar personaje</a></li>
+                      <li><a href="pags/subir_imagen.php">Subir imagen</a></li>
+                  </ul>
+              </li>
+          <?php }?>
               <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                   <ul>
                       <li><a href="pags/logoff.php">Cerrar Sesión</a></li>
@@ -65,10 +86,10 @@ Licence URI: http://www.os-templates.com/template-terms
               <ul>
                   <li><a href="pags/login.php">Iniciar Sesión</a></li>
                   <li><a href="pags/form_registro.php">Registrarse</a></li>
-                  <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a></li>
+                  <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a>
               </ul>
+          </li>
           <?php } ?>
-        </li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
@@ -86,72 +107,43 @@ Licence URI: http://www.os-templates.com/template-terms
         Feria Academica Cultural CUValles 2018
       </h6>
     </article>
-    <!-- ################################################################################################ -->
-    <ul class="nospace clear">
-      <li class="one_third first">
-        <article><i class="fa fa-3x fa-thumbs-o-up"></i>
-          <h4 class="heading underline"><a href="#">¡Me gusta!</a></h4>
-          <p>Da "Me gusta" y comparte con tus amigos y conocidos, ayuda a darnos a conocer.</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article><i class="fa fa-3x fa-users"></i>
-          <h4 class="heading underline"><a href="#">Grupos y Familia</a></h4>
-          <p>Comenta, comparte con tus amigos, en redes sociales o cualquier grupo</p>
-        </article>
-      </li>
-    </ul>
-    <!-- ################################################################################################ -->
-    <div class="clear"></div>
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
-  <footer id="footer" class="hoc topspace-0 clear">
-    <!-- ################################################################################################ -->
-    <br>
-    <!-- ################################################################################################ -->
-    <div class="group">
-      <div class="one_half first">
-        <h6 class="title">Contacto</h6>
-        <address class="btmspace-15">
-          Luis Ángel García Castro<br>
-          Carretera Guadalajara - Ameca Km 45.5<br>
-          Ameca, Jalisco, México<br>
-          C.P. 46600
-        </address>
-        <ul class="nospace">
-          <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
-          <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
-        </ul>
-      </div>
-      <div class="one_half">
-        <h6 class="title">Comunicate</h6>
-        <p>Guadalajara[Matriz] (33) 3105 7071</p>
-        <p>México D.F.  (55) 3105 7071</p>
-        <p>Arabia Saudita.  +966 (5) 105 7071</p>
-        <p>Ahualulco de Mdo.  (386) 105 7071</p>
-      </div>
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
+    <footer id="footer" class="hoc topspace-0 clear">
+        <!-- ################################################################################################ -->
+        <br>
+        <!-- ################################################################################################ -->
+        <div class="group">
+            <div class="one_half first">
+                <h6 class="title">Contacto</h6>
+                <address class="btmspace-15">
+                    Luis Ángel García Castro<br>
+                    Carretera Guadalajara - Ameca Km 45.5
+                    Ameca, Jalisco, México
+                    C.P. 46600
+                </address>
+            </div>
+            <div class="one_half">
+                <h6 class="title">Comunicate</h6>
+                <ul class="nospace">
+                    <li class="btmspace-10"><span class="fa fa-phone"></span> (386) 106 4302</li>
+                    <li><span class="fa fa-envelope-o"></span> luisgarcia@alumnos.udg.mx</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </div>
 <div class="wrapper row5">
-  <div id="copyright" class="hoc clear">
+    <div id="copyright" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="../../index.php">Luis A. García</a></p>
+        <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+        <!-- ################################################################################################ -->
+    </div>
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="index.php">Luis A. García</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
+    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
-<!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
 </body>
 </html>
