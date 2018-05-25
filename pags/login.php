@@ -46,7 +46,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <header id="header" class="hoc clear">
         <!-- ################################################################################################ -->
         <div id="logo" class="fl_left">
-            <h1><a href="index.php">Torneo de videojuegos</a></h1>
+            <h1><a href="../index.php">Torneo de videojuegos</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">

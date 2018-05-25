@@ -54,24 +54,42 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul class="clear">
         <li class="active"><a href="index.php">Inicio</a></li>
           <?php
-          if (isset($_SESSION["nickname"])){?>
+          if (isset($_SESSION["nickname"])){
+          if ($_SESSION["tipo"]==2){ ?>
+              <li class="drop"><a href="index.php">Carrera</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar carreras</a></li>
+                      <li><a href="pags/logoff.php">Agregar carreras</a></li>
+                  </ul>
+              </li>
+              <li class="drop"><a href="index.php">Institución</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar instituciones</a></li>
+                      <li><a href="pags/logoff.php">Agregar instituciones</a></li>
+                  </ul>
+              </li>
+              <li class="drop"><a href="index.php">Personaje</a>
+                  <ul>
+                      <li><a href="pags/logoff.php">Administrar personajes</a></li>
+                      <li><a href="pags/logoff.php">Agregar personaje</a></li>
+                      <li><a href="pags/subir_imagen.php">Subir imagen</a></li>
+                  </ul>
+              </li>
+          <?php }?>
               <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                   <ul>
                       <li><a href="pags/logoff.php">Cerrar Sesión</a></li>
                       <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a></li>
-                      <?php if ($_SESSION["tipo"]==2){
-                          echo '<li><a href="pags/subir_imagen.php">Subir imagen</a></li>';
-                      } ?>
                   </ul>
           <?php } else {?>
           <li><a class="drop" href="#">REGISTRO</a>
               <ul>
                   <li><a href="pags/login.php">Iniciar Sesión</a></li>
                   <li><a href="pags/form_registro.php">Registrarse</a></li>
-                  <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a></li>
+                  <li><a href="pags/reporte_users.php">Ver tabla de concursantes</a>
               </ul>
+          </li>
           <?php } ?>
-        </li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
