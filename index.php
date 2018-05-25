@@ -58,20 +58,20 @@ Licence URI: http://www.os-templates.com/template-terms
           if ($_SESSION["tipo"]==2){ ?>
               <li class="drop"><a href="index.php">Carrera</a>
                   <ul>
-                      <li><a href="pags/logoff.php">Administrar carreras</a></li>
-                      <li><a href="pags/logoff.php">Agregar carreras</a></li>
+                      <li><a href="pags/report_carreras.php">Administrar carreras</a></li>
+                      <li><a href="pags/form_add_carrera.php">Agregar carreras</a></li>
                   </ul>
               </li>
               <li class="drop"><a href="index.php">Institución</a>
                   <ul>
-                      <li><a href="pags/logoff.php">Administrar instituciones</a></li>
-                      <li><a href="pags/logoff.php">Agregar instituciones</a></li>
+                      <li><a href="pags/report_instituto.php">Administrar instituciones</a></li>
+                      <li><a href="pags/form_add_instituto.php">Agregar instituciones</a></li>
                   </ul>
               </li>
               <li class="drop"><a href="index.php">Personaje</a>
                   <ul>
-                      <li><a href="pags/logoff.php">Administrar personajes</a></li>
-                      <li><a href="pags/logoff.php">Agregar personaje</a></li>
+                      <li><a href="pags/report_personajes.php">Administrar personajes</a></li>
+                      <li><a href="pags/form_add_personaje.php">Agregar personaje</a></li>
                       <li><a href="pags/subir_imagen.php">Subir imagen</a></li>
                   </ul>
               </li>

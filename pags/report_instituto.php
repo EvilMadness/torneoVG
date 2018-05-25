@@ -1,27 +1,20 @@
 <?php
 session_start();
-/*if (isset($_SESSION["nickname"])==false){
-    header("Location:../index.php");
-}*/
-/**
- * Created by PhpStorm.
- * User: MnDMzTR
- * Date: 01/05/2018
- * Time: 07:41 PM
- */
+if (isset($_SESSION["tipo"])==true || isset($_SESSION["tipo"])==false){
+    if ($_SESSION["tipo"]!=2 || $_SESSION["tipo"]==1){
+        header("Location:../index.php");
+    }
+}
 require_once "conexion_bd.php";
-$sql = 'SELECT * FROM concursante
-INNER JOIN personaje p on concursante.id_personaje = p.idPersonaje';
+$sql = 'SELECT * FROM institucioneducativa';
 $result = $conn -> query($sql);
 $datos = $result -> fetchAll();
-$total = count($datos)-1;
-$vacantes = (32-$total);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte Competidores</title>
+    <title>Reporte Insituciones</title>
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <link href="../css/botones.css" rel="stylesheet" type="text/css" media="all">
     <link href="../images/MarioIcon2.png" rel="shortcut icon" type="image/x-icon" >
@@ -30,7 +23,7 @@ $vacantes = (32-$total);
 </head>
 <script>
     function confirmDelete(user) {
-        if (confirm("¿Estas seguro de eliminar al usuario "+user+"?")==true){
+        if (confirm("¿Estas seguro de eliminar la institución "+user+"?")==true){
             return true;
         }else
             return false;
@@ -68,9 +61,6 @@ $vacantes = (32-$total);
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href="../index.php">Inicio</a></li>
-                <?php
-                if (isset($_SESSION["nickname"])){
-                    if ($_SESSION["tipo"]==2) {?>
                 <li class="drop"><a href="#">Carrera</a>
                     <ul>
                         <li><a href="report_carreras.php">Administrar carreras</a></li>
@@ -79,99 +69,52 @@ $vacantes = (32-$total);
                 </li>
                 <li class="drop"><a href="#">Institución</a>
                     <ul>
-                        <li><a href="report_instituto.php">Administrar instituciones</a></li>
                         <li><a href="form_add_instituto.php">Agregar instituciones</a></li>
                     </ul>
                 </li>
                 <li class="drop"><a href="#">Personaje</a>
                     <ul>
-                        <li><a href="report_personajes.php">Administrar personajes</a></li>
+                        <li><a href="report_personajes.php">Administrar personaje</a></li>
                         <li><a href="form_add_personaje.php">Agregar personaje</a></li>
                         <li><a href="subir_imagen.php">Subir imagen</a></li>
                     </ul>
                 </li>
-                <?php } ?>
                 <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
-                        <?php if ($_SESSION["tipo"]==2){
-                            echo '<li><a href="subir_imagen.php">Subir imagen</a></li>';
-                            echo '<li><a href="form_registro.php">Registrar nuevo</a></li>';
-                        } ?>
+                        <li><a href="reporte_users.php">Ver tabla de concursantes</a></li>
                         <li><a href="logoff.php">Cerrar Sesión</a></li>
                     </ul>
-                    <?php } else {?>
-                <li><a class="drop" href="#">REGISTRO</a>
-                    <ul>
-                        <li><a href="../pags/login.php">Iniciar Sesión</a></li>
-                        <li><a href="../pags/form_registro.php">Registrarse</a></li>
-                    </ul>
-                    <?php } ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->
     </header>
     <div class="wrapper row3 bgded overlay2 fondoformulario">
-            <h2 class="contador">Total <br> registrados <br><?php echo $total?> </h2>
-            <h2 class="contador2">Cupos <br> disponibles <br><?php echo $vacantes?></h2>
         <main class="hoc container clear">
             <div id="comments">
                 <div align="center">
-                    <div class="one_quarter first">
-                        <input type="text" id="search" placeholder="Buscar concursante" class="">
-                    </div>
-                    <h2 class="healset2">Lista de concursantes</h2>
+                    <h2 class="healset2">Lista de instituciones</h2>
                     <table class="tablapos" border="1" width="80%" style="background-color: #469599" id="result">
                         <tr>
-                            <th>Nickname</th>
-                            <th>Img</th>
-                            <th>Personaje</th>
-                            <th>Correo</th>
-                            <th>Nombre</th>
-                            <?php if (isset($_SESSION["tipo"])){
-                                echo '<th>Acciones</th>';
-                             } ?>
+                            <th>Nombre de la institución</th>
+                            <th>Municipio</th>
+                            <th>Acciones</th>
                         </tr>
                         <?php
                         foreach ($datos as $dato){
                             ?>
                             <tr align="center">
-                                <td><?php echo $dato['nickname'];?></td>
-                                <td style="padding: 0px" width="50px"><img src="../images/personajes/<?php echo $dato['imagen']; ?>"></td>
                                 <td><?php echo $dato['nombre'];?></td>
-                                <td><?php echo $dato['email'];?></td>
-                                <td><?php echo utf8_encode($dato['nombres']);?></td>
-                                <?php if (isset($_SESSION["tipo"])){
-                                    echo '<td style="padding: 0px">';
-                                    if ($_SESSION["nickname"]==$dato["nickname"]||$_SESSION["tipo"]==2){ ?>
-                                        <a href="detail_user.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Detalle.png"></a>
-                                    <?php }
-                                    if ($_SESSION["tipo"]==2){ ?>
-                                            <a href="form_editar.php?id=<?php echo $dato['idConcursante'];?>"><img src="../images/icon/Edit.png"></a>
-                                            <a href="process/remove_user.php?id=<?php echo $dato['idConcursante'];?>"onclick="return confirmDelete('<?php echo $dato['nickname'];?>')"><img src="../images/icon/delete.png"></a>
-                                <?php } echo '</td>';
-                                } ?>
+                                <td><?php echo $dato['municipio'];?></td>
+                                <td>
+                                <a href="form_edit_instituto.php?id=<?php echo $dato['id_institucion'];?>"><img src="../images/icon/Edit.png"></a>
+                                <a href="process/remove_institucion.php?id=<?php echo $dato['id_institucion'];?>"onclick="return confirmDelete('<?php echo $dato['nombre'];?>')"><img src="../images/icon/delete.png"></a>
+                                    </td>
                             </tr>
                         <?php } ?>
                     </table>
-                    <?php
-                    $datos = count($datos);
-                    if ($datos==0){
-                        echo '<h2 class="healsettabla">No hay concursantes registrados</h2>';
-                    }
-                    ?>
                 </div><br>
                 <div class="center">
-                    <?php
-                    if (isset($_SESSION["tipo"])){
-                        if ($_SESSION["tipo"]==2 && $total<32){?>
-                        <input type="submit" onclick="location.href='form_registro.php';" value="Registrar nuevo concursante">
-                    <?php
-                        } elseif ($total==32){
-                            echo '<h2 class="healsettabla2">Registro lleno</h2>';
-                         }
-                    } elseif ($total<32) {?>
-                    <input type="submit" onclick="location.href='form_registro.php';" value="Registrate" >
-                    <?php } ?>
+                    <input type="submit" onclick="location.href='form_add_instituto.php';" value="Registrar otra institución" >
                 </div>
             </div>
         </main>
@@ -213,7 +156,5 @@ $vacantes = (32-$total);
         <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
     </div>
     <script type="application/javascript" src="../js/jquery-3.3.1.min.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../js/buscador.js"></script>
 </body>
 </html>

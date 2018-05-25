@@ -1,14 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION["tipo"])==true || isset($_SESSION["tipo"])==false){
-    if ($_SESSION["tipo"]!=2 || $_SESSION["tipo"]==1){
+if (isset($_SESSION["tipo"])==false){
+    if ($_SESSION["tipo"]!=2){
         header("Location:../index.php");
     }
 }
 include "conexion_bd.php";
- $sql = 'SELECT * FROM personaje';
- $result = $conn ->query($sql);
- $personajes = $result -> fetchAll();
+$sql = 'SELECT * FROM personaje';
+$result = $conn ->query($sql);
+$personajes = $result -> fetchAll();
 ?>
 <!doctype html>
 <html lang="es">
@@ -64,7 +64,6 @@ include "conexion_bd.php";
                     <li class="drop"><a href="index.php">Carrera</a>
                         <ul>
                             <li><a href="report_carreras.php">Administrar carreras</a></li>
-                            <li><a href="form_add_carrera.php">Agregar carreras</a></li>
                         </ul>
                     </li>
                     <li class="drop"><a href="index.php">Institución</a>
@@ -77,6 +76,7 @@ include "conexion_bd.php";
                         <ul>
                             <li><a href="report_personajes.php">Administrar personajes</a></li>
                             <li><a href="form_add_personaje.php">Agregar personaje</a></li>
+                            <li><a href="subir_imagen.php">Subir imagen</a></li>
                         </ul>
                     </li>
                 <?php }?>
@@ -95,22 +95,20 @@ include "conexion_bd.php";
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments" align="center">
-            <form enctype="multipart/form-data" action="process/save_image.php" method="POST" style="width: 50%">
-                <h2 style="background-color: rgba(255,255,255,0.75)">Subir / Actualizar la imagen del personaje</h2>
-                <div>
-                    <select name="nombre" id="nombre">
-                        <option value="0" >════════════════ Elige el personaje ═══════════════</option>
-                        <?php
-                        foreach ($personajes as $personaje){
-                            echo '<option value="'.$personaje['idPersonaje'].'">'.$personaje['idPersonaje'].' - '.utf8_encode($personaje['nombre']).'</option>';
-                        } ?>
-                    </select>
+            <form enctype="multipart/form-data" action="process/add_carrera.php" method="POST" style="width: 70%" onsubmit="return validarcarrera();">
+                <h2 style="background-color: rgba(255,255,255,0.75)">Registrar nueva carrera</h2>
+                <div class="one_quarter first">
+                    <label for="id_carrera"><b>Id</b><span>*</span></label>
+                    <input class="" id="id_carrera" name="id_carrera" type="number" placeholder="ID de la carrera" onkeyup="verificar_id()">
+                    <label id="id_exist"></label>
                 </div>
-                <div>
-                    <label for="imagen"></label>
-                    <input name="imagen" id="imagen" type="file" required>
+                <div class="three_quarter    form-group">
+                    <label for="nom_carrera"><b>Nombre de la carrera</b><span>*</span></label>
+                    <input class="" id="nom_carrera" name="nom_carrera" type="text" placeholder="Licenciatura, Ingenieria o Nivelación." >
                 </div>
-                <input type="submit" value="Subir foto"/>
+                <div class="center first" >
+                    <input type="submit" name="submit" value="Registrar carrera">
+                </div>
             </form>
         </div>
     </main>
@@ -151,7 +149,21 @@ include "conexion_bd.php";
     <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src=""></script>
+<script src="../js/validar2.js" type="text/javascript"></script>
+<script src="../js/bootstrap.min.js"></script><script type="text/javascript">
+    function verificar_id() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "id_carrera" : $("#id_carrera").val()
+            },
+            type: 'post',
+            url: 'process/search_ids.php',
+            success:function (response) {
+                $('#id_exist').html(response);
+            }
+        });
+    }
+</script>
 </body>
 </html>
