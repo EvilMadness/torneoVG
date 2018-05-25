@@ -1,14 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION["tipo"])==true || isset($_SESSION["tipo"])==false){
-    if ($_SESSION["tipo"]!=2 || $_SESSION["tipo"]==1){
+if (isset($_SESSION["tipo"])==false){
+    if ($_SESSION["tipo"]!=2){
         header("Location:../index.php");
     }
 }
 include "conexion_bd.php";
- $sql = 'SELECT * FROM personaje';
- $result = $conn ->query($sql);
- $personajes = $result -> fetchAll();
+$sql = 'SELECT * FROM personaje';
+$result = $conn ->query($sql);
+$personajes = $result -> fetchAll();
 ?>
 <!doctype html>
 <html lang="es">
@@ -60,32 +60,32 @@ include "conexion_bd.php";
                 <li><a href="../index.php">Inicio</a></li>
                 <?php
                 if (isset($_SESSION["nickname"])){
-                if ($_SESSION["tipo"]==2){ ?>
-                    <li class="drop"><a href="index.php">Carrera</a>
-                        <ul>
-                            <li><a href="report_carreras.php">Administrar carreras</a></li>
-                            <li><a href="form_add_carrera.php">Agregar carreras</a></li>
-                        </ul>
-                    </li>
-                    <li class="drop"><a href="index.php">Institución</a>
-                        <ul>
-                            <li><a href="report_instituto.php">Administrar instituciones</a></li>
-                            <li><a href="form_add_instituto.php">Agregar instituciones</a></li>
-                        </ul>
-                    </li>
-                    <li class="drop"><a href="index.php">Personaje</a>
-                        <ul>
-                            <li><a href="report_personajes.php">Administrar personajes</a></li>
-                            <li><a href="form_add_personaje.php">Agregar personaje</a></li>
-                        </ul>
-                    </li>
-                <?php }?>
-                <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
+                    if ($_SESSION["tipo"]==2){ ?>
+                        <li class="drop"><a href="index.php">Carrera</a>
+                            <ul>
+                                <li><a href="report_carreras.php">Administrar carreras</a></li>
+                                <li><a href="form_add_carrera.php">Agregar carreras</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop"><a href="index.php">Institución</a>
+                            <ul>
+                                <li><a href="report_instituto.php">Administrar instituciones</a></li>
+                                <li><a href="form_add_instituto.php">Agregar instituciones</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop"><a href="index.php">Personaje</a>
+                            <ul>
+                                <li><a href="report_personajes.php">Administrar personajes</a></li>
+                                <li><a href="subir_imagen.php">Subir imagen</a></li>
+                            </ul>
+                        </li>
+                    <?php }?>
+                    <li><a class="drop" href="#"><?php echo $_SESSION["nickname"];?></a>
                     <ul>
                         <li><a href="logoff.php">Cerrar Sesión</a></li>
                         <li><a href="reporte_users.php">Ver tabla de concursantes</a></li>
                     </ul>
-                    <?php } ?>
+                <?php } ?>
             </ul>
         </nav>
         <!-- ################################################################################################ -->
@@ -95,22 +95,25 @@ include "conexion_bd.php";
 <div class="wrapper row3 bgded overlay2 fondoformulario">
     <main class="hoc container clear">
         <div id="comments" align="center">
-            <form enctype="multipart/form-data" action="process/save_image.php" method="POST" style="width: 50%">
-                <h2 style="background-color: rgba(255,255,255,0.75)">Subir / Actualizar la imagen del personaje</h2>
-                <div>
-                    <select name="nombre" id="nombre">
-                        <option value="0" >════════════════ Elige el personaje ═══════════════</option>
-                        <?php
-                        foreach ($personajes as $personaje){
-                            echo '<option value="'.$personaje['idPersonaje'].'">'.$personaje['idPersonaje'].' - '.utf8_encode($personaje['nombre']).'</option>';
-                        } ?>
-                    </select>
+            <form enctype="multipart/form-data" action="process/add_personaje.php" method="POST" style="width: 70%" onsubmit="return validarpersonaje();">
+                <h2 style="background-color: rgba(255,255,255,0.75)">Registrar nuevo personaje de juego</h2>
+                <div class="one_quarter first">
+                    <label for="id_personaje"><b>Id</b><span>*</span></label>
+                    <input class="" id="id_personaje" name="id_personaje" type="number" placeholder="ID del personaje" onkeyup="verificar_id()">
+                    <label id="id_exist"></label>
                 </div>
-                <div>
+                <div class="three_quarter form-group">
+                    <label for="nom_personaje"><b>Nombre del personaje</b><span>*</span></label>
+                    <input class="" id="nom_personaje" name="nom_personaje" type="text" placeholder="Nombre del personaje de Smash" >
+                </div>
+                <br><br><br><br><br>
+                <div class="first">
                     <label for="imagen"></label>
                     <input name="imagen" id="imagen" type="file" required>
                 </div>
-                <input type="submit" value="Subir foto"/>
+                <div class="center first" >
+                    <input type="submit" name="submit" value="Registrar institución">
+                </div>
             </form>
         </div>
     </main>
@@ -151,7 +154,21 @@ include "conexion_bd.php";
     <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src=""></script>
+<script src="../js/validar2.js" type="text/javascript"></script>
+<script src="../js/bootstrap.min.js"></script><script type="text/javascript">
+    function verificar_id() {
+        //var email = document.getElementById('email').value;
+        $.ajax({
+            data:{
+                "id_personaje" : $("#id_personaje").val()
+            },
+            type: 'post',
+            url: 'process/search_ids.php',
+            success:function (response) {
+                $('#id_exist').html(response);
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -7,6 +7,10 @@ if(isset($_POST['email'])) {
     $count = $result->rowCount();
     if ($count > 0) {
         echo '<span class="ocupado">¡Email ya registrado!</span>';
-    }else
-        echo '<span class="disponible"> Email disponible </span>';
+    }
+    elseif ($email == " " || $email == null) {
+        echo '<span class="disponible">Vacío</span>';
+    }
+    else
+        echo '<span class="disponible">Email disponible </span>';
 }
