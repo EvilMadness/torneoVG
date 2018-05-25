@@ -112,7 +112,7 @@ $personajes = $result -> fetchAll();
                     <input name="imagen" id="imagen" type="file" required>
                 </div>
                 <div class="center first" >
-                    <input type="submit" name="submit" value="Registrar institución">
+                    <input type="submit" name="submit" value="Registrar personaje">
                 </div>
             </form>
         </div>
